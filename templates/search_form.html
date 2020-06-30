@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Form{% endblock %}
+<link rel="stylesheet" href="/static/style.css">
+
+{% block content %}
+
+<div class='form-container'>
+    <form action='/search_results' method="GET">
+        Type in the name of the fish: <input type='text' id='name' name='species'>
+        <br>
+        <input id='submit' type='submit'>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <body>
+        <div class="wrapper">
+            <nav>
+               <a href='/'>Fish Watch!</a>
+            </nav>
+
+            {% block content%}
+
+            {% endblock%}
+
+        </div>
+        <footer>
+            <ul class='footer-list'>
+                <li><a href="https://www.linkedin.com/in/anastasia-gallardo-5182ab192">LinkedIn</a></li>
+                <li><a href="https://github.com/stasi815?tab=repositories">GitHub</a></li>
+            </ul>
+        </footer>
+
+</body>
+</html>

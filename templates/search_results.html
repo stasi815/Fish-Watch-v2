@@ -8,7 +8,14 @@
 
     <div class="main">
         <div class="description">
-            The sustainability of {{ species }} is {{ sustainability }}.
+            {% for seafood in response%}
+                {% if species[0] == seafood[1] %}
+                    <ul>
+                        <li class="quote">{{ seafood['Quote'] }}</li>
+                    </ul>
+                {% endif %}
+            {% endfor %}
+            The report of {{ species }}.
         </div>
         <div class="back">
             <form action="/">

@@ -13,16 +13,33 @@ def index():
 
 @app.route('/search_form', methods=['GET', 'POST'])
 def search_form():
+
+    r = requests.get('https://www.fishwatch.gov/api/species')
+
+    response = r.json()
+
     if request.method == 'POST':
         return redirect(url_for('index'))
         # species = request.form.get('species')
         # return f'''<h1>The species is: {species}</h1> '''
-    return render_template('search_form.html')
+    return render_template('search_form.html', response=response)
 
 @app.route('/search_results')
 def search_results():
+
     species = request.args.get('species')
-    return f'''<h1>The species is: {species}</h1> '''
+    
+    print(species)
+
+    r = requests.get('https://www.fishwatch.gov/api/species')
+
+    response = r.json()
+
+
+
+    return render_template('search_results.html', response=response, species=species)
+
+    # return f'''<h1>The species is: {species}</h1> '''
 
     # params = {
     #     'Species Name': species,
@@ -32,34 +49,26 @@ def search_results():
     # species_name = json_response[1]
     # return response
 
+def strip_html(content):
+
+    new_content = content.text
+
+    edited_text = new_content.replace('\\n', ' ').replace('\\u', " ").replace('\\', "").replace('&nbsp;', " ").replace('","', '\n').replace('"', '').replace('src:', "")
+
+    stripped_content = re.sub('<[^<]+?>|\[{|\}]|\}|\{', '', edited_text)
+
+    return stripped_content
+
 @app.route('/all_species')
 def get_all():
+
     r = requests.get('https://www.fishwatch.gov/api/species')
 
-    response = str(r.text)
-
-    # response_words = response.split()
-
-    # word_list = []
-    # for word in response_words:
-    #     word_list.append(word)
-
-    # new_string = " ".join(word_list)
-
-    edited_response = response.replace('\\n', ' ').replace('\\u', " ").replace('\\', "").replace('\&nbsp;', "")
-
-    stripped = re.sub('<[^<]+?>|\[{|\}]|\}|\{', '', edited_response)
+    # response = strip_html(r)
+    response = r.json()
 
 
-    return render_template('all.html', stripped=stripped)
+    return render_template('all.html', response=response)
 
-    # species = json.loads(r.text)
-    # json_response = r.json()
-    # length = len(json_response)
-    # name = json_response['Species Name']
-    # response = json.dumps(json_response)
-
-    # response = json_response[1]
-    # print(json_response)
-    # return response
-    # return render_template('all.html', response=response)
+if __name__ == '__main__':
+    app.run(debug=True)

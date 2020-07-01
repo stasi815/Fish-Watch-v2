@@ -2,19 +2,20 @@
 
 {% block title %}All Species{% endblock %}
 <link rel="stylesheet" href="/static/style.css">
-<!-- {% block script %}
-<script>
-    function allData() {
-
-    }
-
-</script> 
-{% endblock %} -->
 
 {% block content %}
 
     <div class="all-items">
-        {{ stripped }}
+        <h1>All Seafood: </h1>
+        <div>
+            <!-- {{ response }} -->
+            {% for species in response %}
+                <h3 class="species-name">{{ species['Species Name'] }}</h3>
+                <ul>
+                    <li class="quote">{{ species['Quote'] }}</li>
+                </ul>
+            {% endfor %}
+        </div>
     </div>
 
 {% endblock %}

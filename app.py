@@ -1,7 +1,9 @@
 import os
 from flask import Flask, request, url_for, redirect,render_template
 import requests
+import re
 import json
+import sys
 
 app = Flask(__name__)
 
@@ -23,24 +25,52 @@ def search_results():
     return f'''<h1>The species is: {species}</h1> '''
 
     # params = {
-    #     'q': species,
+    #     'Species Name': species,
     # }
-    # response = requests.get('https://www.fishwatch.gov/api/species')
+    # response = requests.get('https://www.fishwatch.gov/api/species/get', params=params)
     # json_response = response.json()
     # species_name = json_response[1]
-    # return species_name
+    # return response
 
 @app.route('/all_species')
 def get_all():
     r = requests.get('https://www.fishwatch.gov/api/species')
 
+    response = str(r.text)
+
+    # response_words = response.split()
+
+    # word_list = []
+    # for word in response_words:
+    #     word_list.append(word)
+
+    # new_string = " ".join(word_list)
+
+    # response = re.sub("\\n", " ", response)
+    # edited_response = re.sub(r'^(?:\\n)+','', new_string)
+
+    # for i in response:
+    #     return i
+    # string_response = response.rstrip()
+    edited_response = response.replace('\\n', ' ')
+    edited_response = edited_response.replace('\\u', " ")
+    # new_response = edited_response.replace('\[{', ' ')
+    # new_response = re.sub('\[{|\}]|\}|\{', " ", edited_response)
+
+    # print(response, file=sys.stderr)
+    # print(new_response)
+
+    stripped = re.sub('<[^<]+?>|\[{|\}]|\}|\{', '', edited_response)
+
+
+    return render_template('all.html', stripped=stripped)
+
     # species = json.loads(r.text)
-    json_response = r.json()
-    length = len(json_response)
+    # json_response = r.json()
+    # length = len(json_response)
     # name = json_response['Species Name']
     # response = json.dumps(json_response)
-    for i in json_response:
-        return i
+
     # response = json_response[1]
     # print(json_response)
     # return response

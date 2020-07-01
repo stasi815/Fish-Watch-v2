@@ -46,19 +46,7 @@ def get_all():
 
     # new_string = " ".join(word_list)
 
-    # response = re.sub("\\n", " ", response)
-    # edited_response = re.sub(r'^(?:\\n)+','', new_string)
-
-    # for i in response:
-    #     return i
-    # string_response = response.rstrip()
-    edited_response = response.replace('\\n', ' ')
-    edited_response = edited_response.replace('\\u', " ")
-    # new_response = edited_response.replace('\[{', ' ')
-    # new_response = re.sub('\[{|\}]|\}|\{', " ", edited_response)
-
-    # print(response, file=sys.stderr)
-    # print(new_response)
+    edited_response = response.replace('\\n', ' ').replace('\\u', " ").replace('\\', "").replace('\&nbsp;', "")
 
     stripped = re.sub('<[^<]+?>|\[{|\}]|\}|\{', '', edited_response)
 

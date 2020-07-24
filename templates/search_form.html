@@ -7,12 +7,12 @@
 
 <div class='main-container'>
     <form class='form-container' action="{{ url_for('search_results') }}" method="POST">
-        Type in the name of the fish: <input type='text' id='name' name='species'>
-        <br>
-        <input id='submit' type='submit'>
+        <h3>Enter the name of the fish:</h3>
+        <input class="input-text" type='text' id='name' name='species'>
+        <input class="submit_button "id='submit' type='submit'>
     </form>
     <div class="reference-list">
-        <h2>List of seafoods for reference:</h2>
+        <h3>List of seafoods for reference:</h3>
         {% for seafood in response %}
                 <p class="species-name">{{ seafood['Species Name'] }}</p>
         {% endfor %}

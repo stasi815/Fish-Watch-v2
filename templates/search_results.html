@@ -8,25 +8,32 @@
 
     <div class="main">
         <div class="description">
-            <!-- {% for seafood in response %} -->
-                    <!-- <ul> -->
-                        <!-- <p class="quote">{{ seafood['Quote'] }}</p> -->
-                        <p class="habitat">{{ habitat }}</p>
-                        {% if img_url %}
-                            <img src='{{ img_url }}'>
-                        {% endif %}
-                        <!-- <li class="quote">{{ seafood['Habitat Impacts'] }}</li>
-                        <li class="quote">{{ seafood['Population Status'] }}</li> -->
-                    <!-- </ul> -->
-            <!-- {% endfor %} -->
+            {% if response %}
+                {% if img_url %}
+                    <img src='{{ img_url }}' style="width: 80%; height: 80%">
+                {% endif %}
+                <p class="habitat"><h4>Habitat:</h4> {{ habitat }}</p>
+                <p class="habitat-impacts"><h4>Habitat Impacts:</h4> {{ impacts }}</p>
+                <p class="location"><h4>Location:</h4> {{ location }}</p>
+                <p class="bycatch"><h4>Bycatch:</h4> {{ bycatch }}</p>
+                <p class="availability"><h4>Availability:</h4> {{ availability
+                }}</p>
+                <p class="harvest-type"><h4>Harvest Type:</h4> {{ harvest_type
+                }}</p>
+                <p class="source"><h4>Source:</h4> {{ source }}</p>
+                <p class="rate"><h4>Fishing Rate:</h4> {{ rate }}</p>
+                <p class="harvest"><h4>Harvest:</h4> {{ harvest }}</p>
+            {% else %}
+                <div>{{ error_message }}</div>
+            {% endif %}
         </div>
         <div class="back">
-            <form action="/">
-                Go back to main page
+            <form class="landing-btn" action="/">
+                Back to main page
                 <input type="submit" value="Go">
             </form>
-            <form action="/search_form">
-                Go back to search page
+            <form class="search-btn" action="/search_form">
+                Back to search page
                 <input type="submit" value="Go">
             </form>
         </div>

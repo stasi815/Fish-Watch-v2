@@ -5,18 +5,18 @@
 
 {% block content %}
 
-<div class='form-container'>
-    <form action='/search_results' method="GET">
+<div class='main-container'>
+    <form class='form-container' action="{{ url_for('search_results') }}" method="POST">
         Type in the name of the fish: <input type='text' id='name' name='species'>
         <br>
         <input id='submit' type='submit'>
     </form>
-    <p>List of seafood:</p>
-    {% for seafood in response %}
-        <ul>
-            <li class="species-name">{{ seafood['Species Name'] }}</li>
-        </ul>
-{% endfor %}
+    <div class="reference-list">
+        <h2>List of seafoods for reference:</h2>
+        {% for seafood in response %}
+                <p class="species-name">{{ seafood['Species Name'] }}</p>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

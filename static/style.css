@@ -32,12 +32,29 @@ ul {
     align-items: center;
 }
 
-.form-container {
+.index-title {
+    margin-bottom: 3em;
+}
+
+.index-img {
+    margin-bottom: 1.5em;
+}
+
+.reference-list {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding: 1em;
+}
+
+.form-container {
+    display: flex;
 }
 
 .main {
@@ -50,18 +67,6 @@ ul {
 
 .description {
     margin: 0 0 1em 0;
-}
-
-.mood-div {
-    margin: 0 0 1em 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.mood-selector {
-    margin-top: 1em;
 }
 
 .back {

@@ -8,19 +8,26 @@
 
     <div class="main">
         <div class="description">
-            {% for seafood in response%}
-                {% if species[0] == seafood[1] %}
-                    <ul>
-                        <li class="quote">{{ seafood['Quote'] }}</li>
-                    </ul>
-                {% endif %}
-            {% endfor %}
-            The report of {{ species }}.
+            <!-- {% for seafood in response %} -->
+                    <!-- <ul> -->
+                        <!-- <p class="quote">{{ seafood['Quote'] }}</p> -->
+                        <p class="habitat">{{ habitat }}</p>
+                        {% if img_url %}
+                            <img src='{{ img_url }}'>
+                        {% endif %}
+                        <!-- <li class="quote">{{ seafood['Habitat Impacts'] }}</li>
+                        <li class="quote">{{ seafood['Population Status'] }}</li> -->
+                    <!-- </ul> -->
+            <!-- {% endfor %} -->
         </div>
         <div class="back">
             <form action="/">
                 Go back to main page
-                <input type="submit" value="Go back">
+                <input type="submit" value="Go">
+            </form>
+            <form action="/search_form">
+                Go back to search page
+                <input type="submit" value="Go">
             </form>
         </div>
     </div>

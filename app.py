@@ -76,6 +76,12 @@ def search_results():
         else:
             img_url = None
 
+        if search_results['Population'] != None:
+            population = search_results['Population']
+            population = strip_html(population)
+        else:
+            population = 'No population information available'
+
         if search_results['Habitat Impacts'] != None:
             hab_impacts = search_results['Habitat Impacts']
             impacts = strip_html(hab_impacts)
@@ -136,7 +142,7 @@ def search_results():
         habitat = None
         img_url = None
 
-    return render_template('search_results.html', response=response, habitat=habitat, img_url=img_url, error_message=error_message, impacts=impacts, location=location, bycatch=bycatch, rate=rate, harvest=harvest, harvest_type=harvest_type, source=source, availability=availability)
+    return render_template('search_results.html', response=response, habitat=habitat, img_url=img_url, error_message=error_message, impacts=impacts, location=location, bycatch=bycatch, rate=rate, harvest=harvest, harvest_type=harvest_type, source=source, availability=availability, population=population)
 
 @app.route('/all_species')
 def get_all():
